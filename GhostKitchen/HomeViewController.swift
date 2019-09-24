@@ -9,9 +9,11 @@
 import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
+    
+    // Initialize the collection view
     @IBOutlet weak var restaurantsCollection: UICollectionView!
     
+    // Intial
     var selectionName: String = ""
     var selectionImage: UIImage? = UIImage()
     var selectionAddress: String = ""
