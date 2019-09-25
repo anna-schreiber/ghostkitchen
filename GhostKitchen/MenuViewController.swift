@@ -24,10 +24,6 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var filteredArray: [Menu] = []
     
-
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -77,4 +73,27 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
          return cell
      }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cellIdentifier = "menuTableViewCell"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MenuTableViewCell else {
+            fatalError("The dequeued cell is not an instance of MenuTableViewCell")
+        }
+        // Add the selected menu items to an array and add them to the cart
+        let menuItem: Menu = filteredArray[indexPath.row]
+        let defaults = UserDefaults.standard
+        var array = defaults.object(forKey:"cart") as? [String] ?? [String]()
+        array.append(menuItem.item)
+        defaults.set(array, forKey: "cart")
+        
+        // Alert that the item was added to the cart
+        let alert = UIAlertController(title:"Hope you're hungry!", message: "Item successfully added to cart.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Woohoo!", style: UIAlertAction.Style.default) {
+            UIAlertAction in
+            self.menuTableView.deselectRow(at: indexPath, animated: false)
+        }
+        alert.addAction(action)
+        //alert.addAction(UIAlertAction(title: "Woohoo!", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
 }

@@ -71,14 +71,40 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchTableView.reloadData()
     }
     
-    func updateSearchResults(for searchController: UISearchController) {
-    }
-
-    
     func searchBarIsEmpty() -> Bool{
         return searchMenu.text?.isEmpty ?? true
     }
-
+    
+    @IBAction func displayBurgers(_ sender: Any) {
+        filteredMenu = masterMenu.filter({(menuItem : Menu) -> Bool in return menuItem.keywords.contains("burger")
+        })
+        searchTableView.reloadData()
+    }
+    
+    @IBAction func displayDesserts(_ sender: Any) {
+        filteredMenu = masterMenu.filter({(menuItem : Menu) -> Bool in return menuItem.keywords.contains("dessert")
+        })
+        searchTableView.reloadData()
+    }
+    
+    @IBAction func displayCoffee(_ sender: Any) {
+        filteredMenu = masterMenu.filter({(menuItem : Menu) -> Bool in return menuItem.keywords.contains("coffee")
+        })
+        searchTableView.reloadData()
+    }
+    
+    @IBAction func displayPizza(_ sender: Any) {
+        filteredMenu = masterMenu.filter({(menuItem : Menu) -> Bool in return menuItem.keywords.contains("pizza")
+        })
+        searchTableView.reloadData()
+    }
+    
+    @IBAction func displaySubs(_ sender: Any) {
+        filteredMenu = masterMenu.filter({(menuItem : Menu) -> Bool in return menuItem.keywords.contains("sub")
+        })
+        searchTableView.reloadData()
+    }
+    
     /*
     // MARK: - Navigation
 
