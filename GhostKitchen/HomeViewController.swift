@@ -19,14 +19,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var selectionAddress: String = ""
     var selectionPhone: String = ""
     
-    // Load the data into the restuarant object
-    let data: [Restaurant] = [Restaurant(name: "McDorks", image: #imageLiteral(resourceName: "mcdorks"), address: "114 W Ronald Way",
-                                         phone: "(678) 123-1234"),
-                              Restaurant(name: "Subwong", image: #imageLiteral(resourceName: "Subwong"), address: "115 S Sandwich Drive", phone: "(678) 123-1234"),
-                              Restaurant(name: "Out & In", image: #imageLiteral(resourceName: "out-n-in"), address: "116 E Burger Drive", phone: "(678) 123-1234"),
-                              Restaurant(name: "Domiyes", image: #imageLiteral(resourceName: "domiyes"), address: "117 N Crusty Avenue", phone: "(678) 123-1234"),
-                              Restaurant(name: "Wendels", image: #imageLiteral(resourceName: "wendels"), address: "118 E Curly Fry Street", phone: "(678) 123-1234"),
-                              Restaurant(name: "Taco Horn", image: #imageLiteral(resourceName: "taco"), address: "118 Soft Shell Drive", phone: "(678) 123-1234")]
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +41,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     // Loads the restaurant data into the collection view
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = restaurantsCollection.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! CollectionViewCell
-        cell.restaurantTitle.text = self.data[indexPath.item].name
-        cell.restaurantImage.image = self.data[indexPath.item].image
+        cell.restaurantTitle.text = data[indexPath.item].name
+        cell.restaurantImage.image = data[indexPath.item].image
         
         // Format cell to have round edges
         cell.restaurantImage.layer.cornerRadius = cell.restaurantImage.frame.size.width / 6

@@ -8,8 +8,4 @@
 import UIKit
 import Foundation
 
-struct Menu {
-    let restaurant: String
-    let item: String
-    let price: Double
-}
+

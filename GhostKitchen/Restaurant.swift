@@ -8,9 +8,4 @@
 import UIKit
 import Foundation
 
-struct Restaurant {
-    let name: String
-    let image: UIImage
-    let address: String
-    let phone: String
-}
+
