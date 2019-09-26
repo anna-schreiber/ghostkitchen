@@ -29,6 +29,8 @@
 		AB9B79CD233163E100EB715F /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9B79CC233163E100EB715F /* CollectionViewCell.swift */; };
 		ABB2F5F02332914100C2878E /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = ABB2F5EF2332914100C2878E /* video.mp4 */; };
 		ABE9EF97233CFAE200E6154F /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE9EF96233CFAE200E6154F /* OrderViewController.swift */; };
+		ABE9EF9F233D424A00E6154F /* RockSalt-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABE9EF9D233D424A00E6154F /* RockSalt-Regular.ttf */; };
+		ABE9EFA0233D424A00E6154F /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = ABE9EF9E233D424A00E6154F /* LICENSE.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,8 @@
 		AB9B79CC233163E100EB715F /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		ABB2F5EF2332914100C2878E /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = video.mp4; path = ../../../../Downloads/video.mp4; sourceTree = "<group>"; };
 		ABE9EF96233CFAE200E6154F /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		ABE9EF9D233D424A00E6154F /* RockSalt-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RockSalt-Regular.ttf"; sourceTree = "<group>"; };
+		ABE9EF9E233D424A00E6154F /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,9 +123,20 @@
 				AB0B8685233BE45500BA9FBE /* CartViewController.swift */,
 				AB0B8687233BF44800BA9FBE /* CartTableViewCell.swift */,
 				ABE9EF96233CFAE200E6154F /* OrderViewController.swift */,
+				ABE9EF9C233D424A00E6154F /* Rock_Salt */,
 				AB061C4E2332CD1800363725 /* fonts */,
 			);
 			path = GhostKitchen;
+			sourceTree = "<group>";
+		};
+		ABE9EF9C233D424A00E6154F /* Rock_Salt */ = {
+			isa = PBXGroup;
+			children = (
+				ABE9EF9D233D424A00E6154F /* RockSalt-Regular.ttf */,
+				ABE9EF9E233D424A00E6154F /* LICENSE.txt */,
+			);
+			name = Rock_Salt;
+			path = ../../../../.Trash/Rock_Salt;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,10 +200,12 @@
 				AB061C552332CD1800363725 /* Manjari-Regular.ttf in Resources */,
 				AB061C542332CD1800363725 /* Manjari-Thin.ttf in Resources */,
 				AB061C532332CD1800363725 /* Manjari-Bold.ttf in Resources */,
+				ABE9EF9F233D424A00E6154F /* RockSalt-Regular.ttf in Resources */,
 				AB061C562332CD1800363725 /* OFL.txt in Resources */,
 				AB758C25233149F400C93172 /* LaunchScreen.storyboard in Resources */,
 				AB758C22233149F400C93172 /* Assets.xcassets in Resources */,
 				AB758C20233149F400C93172 /* Main.storyboard in Resources */,
+				ABE9EFA0233D424A00E6154F /* LICENSE.txt in Resources */,
 				ABB2F5F02332914100C2878E /* video.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

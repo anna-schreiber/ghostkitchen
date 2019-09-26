@@ -42,6 +42,11 @@ class ViewController: UIViewController {
         
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let defaults = UserDefaults.standard
+        defaults.set([String](), forKey: "cart")
+    }
 
     @IBAction func loginAction(_ sender: Any) {
         if usernameTextField.text == "" {
@@ -54,7 +59,7 @@ class ViewController: UIViewController {
             self.present(alert, animated: true)
         } else{
             print("Saving username...performing segue.")
-            UserDefaults.standard.set(usernameTextField.text, forKey: "profile")
+            UserDefaults.standard.set(usernameTextField.text?.lowercased(), forKey: "profile")
             performSegue(withIdentifier: "loginSegue", sender: self)
         }
         

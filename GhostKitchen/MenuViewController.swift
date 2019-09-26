@@ -102,18 +102,21 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let menuItem: Menu = filteredArray[indexPath.row]
         let defaults = UserDefaults.standard
         var array = defaults.object(forKey:"cart") as? [String] ?? [String]()
-        array.append(menuItem.item)
-        defaults.set(array, forKey: "cart")
+        
         
         if (name == "sarah") {
             if !(filteredArray[indexPath.row].keywords.contains("vegetarian")){
                 // Alert that the item was added to the cart
-                let alert = UIAlertController(title:"Dietary Restriction Warning", message: "This item is not veggetarian.", preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
+                let alert = UIAlertController(title:"Dietary Restriction Warning", message: "This item is not vegetarian. Would you like to continue?", preferredStyle: .alert)
+                let actionOK = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) {
                     UIAlertAction in
                     self.menuTableView.deselectRow(at: indexPath, animated: false)
+                    array.append(menuItem.item)
+                    defaults.set(array, forKey: "cart")
                 }
-                alert.addAction(action)
+                let actionCancel = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel)
+                alert.addAction(actionOK)
+                alert.addAction(actionCancel)
                 //alert.addAction(UIAlertAction(title: "Woohoo!", style: .default, handler: nil))
                 self.present(alert, animated: true)
             } else{
@@ -122,6 +125,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 let action = UIAlertAction(title: "Woohoo!", style: UIAlertAction.Style.default) {
                     UIAlertAction in
                     self.menuTableView.deselectRow(at: indexPath, animated: false)
+                    array.append(menuItem.item)
+                    defaults.set(array, forKey: "cart")
                 }
                 alert.addAction(action)
                 //alert.addAction(UIAlertAction(title: "Woohoo!", style: .default, handler: nil))
@@ -134,6 +139,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let action = UIAlertAction(title: "Woohoo!", style: UIAlertAction.Style.default) {
                 UIAlertAction in
                 self.menuTableView.deselectRow(at: indexPath, animated: false)
+                array.append(menuItem.item)
+                defaults.set(array, forKey: "cart")
             }
             alert.addAction(action)
             //alert.addAction(UIAlertAction(title: "Woohoo!", style: .default, handler: nil))

@@ -34,7 +34,6 @@ class ProfileViewController: UIViewController {
         
         loadProfileData()
         
-        
     }
     func loadProfileData(){
         for (index, item) in profile.enumerated(){

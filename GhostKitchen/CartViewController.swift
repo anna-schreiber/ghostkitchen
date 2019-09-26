@@ -34,6 +34,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         subtotal = 0.0
         
+        checkCartStatus()
         
     }
     
@@ -41,6 +42,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         print(array)
         subtotal = 0.0
         cartTableView.reloadData()
+        checkCartStatus()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -81,5 +83,15 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Pass the selected object to the new view controller.
     }
     */
-
+    func checkCartStatus(){
+        if array.count == 0{
+            subtotalLabel.text = "$0.00"
+            // Alert that the item was added to the cart
+            let alert = UIAlertController(title:"Uh oh!", message: "Looks like your cart's empty.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
+            alert.addAction(action)
+            //alert.addAction(UIAlertAction(title: "Woohoo!", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
+    }
 }

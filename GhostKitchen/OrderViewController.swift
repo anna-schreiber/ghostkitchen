@@ -10,11 +10,17 @@ import UIKit
 
 class OrderViewController: UIViewController {
     
+    @IBOutlet weak var mapImage: UIImageView!
+    @IBOutlet weak var truckImage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+        mapImage.image = UIImage(imageLiteralResourceName: "map")
+        UIView.animate(withDuration: 2.0) {
+            self.truckImage.frame.origin.x += 307
+        }
     }
     
     

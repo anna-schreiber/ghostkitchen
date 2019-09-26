@@ -23,8 +23,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+//
+//        let attrs = [
+//            NSAttributedString.Key.foregroundColor: UIColor.red,
+//            NSAttributedString.Key.font: UIFont(name: "Rock Salt", size: 24)!
+//        ]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "RockSalt-Regular", size: 17)!, NSAttributedString.Key.foregroundColor: UIColor.red]
+//        UINavigationBar.appearance().titleTextAttributes = attrs
     }
+
     
     // Adjust size of collectiom cell
     internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
