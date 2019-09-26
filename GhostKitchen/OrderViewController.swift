@@ -12,6 +12,12 @@ class OrderViewController: UIViewController {
     
     @IBOutlet weak var mapImage: UIImageView!
     @IBOutlet weak var truckImage: UIImageView!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var subtotalLabel: UILabel!
+    
+    var orderTotal: Double = 0.0
+    
+    let name: String! = UserDefaults.standard.string(forKey: "profile") ?? ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +26,17 @@ class OrderViewController: UIViewController {
         mapImage.image = UIImage(imageLiteralResourceName: "map")
         UIView.animate(withDuration: 2.0) {
             self.truckImage.frame.origin.x += 307
+        }
+        loadProfileData()
+        
+        subtotalLabel.text = String(format: "$%.02f", orderTotal)
+    }
+    
+    func loadProfileData(){
+        for (index, item) in profile.enumerated(){
+            if (profile[index].username == name) {
+                addressLabel.text = profile[index].address
+            }
         }
     }
     

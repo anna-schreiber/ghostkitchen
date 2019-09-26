@@ -75,6 +75,6 @@ let data: [Restaurant] = [Restaurant(name: "McDorks", image: #imageLiteral(resou
 
 // Load fake profile data into the profile object
 let profile: [Profile] = [Profile(name: "John Smith", username: "john", profPic: #imageLiteral(resourceName: "john"), address: "12 W Courtland Ave", phone: "(678) 238-2873", excludedIngredients: ["None"]),
-                          Profile(name: "Sarah Johnson", username: "sarah", profPic: #imageLiteral(resourceName: "sarah"), address: "78 N 15th St", phone: "(678) 356-7629", excludedIngredients: ["Meat"]),
-                          Profile(name: "Taylor Green", username: "taylor", profPic: #imageLiteral(resourceName: "taylor"), address: "872 E Lily Rd", phone: "(404) 368-8262", excludedIngredients: ["Nuts"]),
+                          Profile(name: "Sarah Johnson", username: "sarah", profPic: #imageLiteral(resourceName: "sarah"), address: "78 N 15th St", phone: "(678) 356-7629", excludedIngredients: ["Vegetarian"]),
+                          Profile(name: "Taylor Green", username: "taylor", profPic: #imageLiteral(resourceName: "taylor"), address: "872 E Lily Rd", phone: "(404) 368-8262", excludedIngredients: ["Nut allergy"]),
                           Profile(name: "Ray Weathers", username: "ray", profPic: #imageLiteral(resourceName: "ray"), address: "932 S Peachtree St", phone: "(404) 386-9786", excludedIngredients: ["None"])]

@@ -42,7 +42,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         print(array)
         subtotal = 0.0
         cartTableView.reloadData()
-        checkCartStatus()
+        //checkCartStatus()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -93,5 +93,12 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
             //alert.addAction(UIAlertAction(title: "Woohoo!", style: .default, handler: nil))
             self.present(alert, animated: true)
         }
+    }
+    
+    // Persists the restaurant data from the selection to the menu screen
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let controller = segue.destination as! OrderViewController
+        
+        controller.orderTotal = subtotal
     }
 }
