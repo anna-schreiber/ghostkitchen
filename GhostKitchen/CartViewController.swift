@@ -12,6 +12,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var cartTableView: UITableView!
     @IBOutlet weak var subtotalLabel: UILabel!
+    @IBOutlet weak var checkoutButton: UIButton!
     
     var array = [String]()
     var subtotal: Double = 0.0
@@ -28,6 +29,8 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         cartTableView.delegate = self
         cartTableView.dataSource = self
+        
+        checkoutButton.layer.cornerRadius = 5
         
         subtotal = 0.0
         

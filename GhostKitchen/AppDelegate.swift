@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let defaults = UserDefaults.standard
         defaults.set([String](), forKey: "cart")
+        defaults.set(String(), forKey: "profile")
         
         return true
     }

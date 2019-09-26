@@ -54,6 +54,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SearchTableViewCell else {
             fatalError("The dequeued cell is not an instance of SearchTableViewCell.")
         }
+        
+        // Set the restuarant image
         for (index, item) in data.enumerated(){
             if (data[index].name == filteredMenu[indexPath.row].restaurant){
                 cell.restaurantImage.image = data[index].image
@@ -61,8 +63,33 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         cell.restaurantName.text = filteredMenu[indexPath.row].restaurant
         cell.menuItem.text = filteredMenu[indexPath.row].item
-        cell.itemPrice.text = String(format: "$%.02f", masterMenu[indexPath.row].price)
+        cell.itemPrice.text = String(format: "$%.02f", filteredMenu[indexPath.row].price)
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cellIdentifier = "searchTableViewCell"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SearchTableViewCell else {
+            fatalError("The dequeued cell is not an instance of SearchTableViewCell.")
+        }
+        
+        // Uses user defaults to add item to cart
+        let menuItem: Menu = filteredMenu[indexPath.row]
+        let defaults = UserDefaults.standard
+        var array = defaults.object(forKey:"cart") as? [String] ?? [String]()
+        array.append(menuItem.item)
+        defaults.set(array, forKey: "cart")
+        
+        // Alert that the item was added to the cart
+        let alert = UIAlertController(title:"Hope you're hungry!", message: "Item successfully added to cart.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Woohoo!", style: UIAlertAction.Style.default) {
+            UIAlertAction in
+            self.searchTableView.deselectRow(at: indexPath, animated: false)
+        }
+        alert.addAction(action)
+        //alert.addAction(UIAlertAction(title: "Woohoo!", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
@@ -78,6 +105,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func displayBurgers(_ sender: Any) {
         filteredMenu = masterMenu.filter({(menuItem : Menu) -> Bool in return menuItem.keywords.contains("burger")
         })
+        print(filteredMenu)
         searchTableView.reloadData()
     }
     

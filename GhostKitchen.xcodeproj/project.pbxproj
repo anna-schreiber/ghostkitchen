@@ -28,6 +28,7 @@
 		AB8769282333C3B90013A0C0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8769272333C3B90013A0C0 /* SearchViewController.swift */; };
 		AB9B79CD233163E100EB715F /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9B79CC233163E100EB715F /* CollectionViewCell.swift */; };
 		ABB2F5F02332914100C2878E /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = ABB2F5EF2332914100C2878E /* video.mp4 */; };
+		ABE9EF97233CFAE200E6154F /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE9EF96233CFAE200E6154F /* OrderViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		AB8769272333C3B90013A0C0 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		AB9B79CC233163E100EB715F /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		ABB2F5EF2332914100C2878E /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = video.mp4; path = ../../../../Downloads/video.mp4; sourceTree = "<group>"; };
+		ABE9EF96233CFAE200E6154F /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				AB061C482332C1F300363725 /* ProfileViewController.swift */,
 				AB0B8685233BE45500BA9FBE /* CartViewController.swift */,
 				AB0B8687233BF44800BA9FBE /* CartTableViewCell.swift */,
+				ABE9EF96233CFAE200E6154F /* OrderViewController.swift */,
 				AB061C4E2332CD1800363725 /* fonts */,
 			);
 			path = GhostKitchen;
@@ -197,6 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABE9EF97233CFAE200E6154F /* OrderViewController.swift in Sources */,
 				AB9B79CD233163E100EB715F /* CollectionViewCell.swift in Sources */,
 				AB758C1D233149F400C93172 /* ViewController.swift in Sources */,
 				AB8769282333C3B90013A0C0 /* SearchViewController.swift in Sources */,

@@ -16,7 +16,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -25,6 +24,8 @@ class ViewController: UIViewController {
         backgroundImage.image = UIImage(named: "nugget")
         backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
         self.view.insertSubview(backgroundImage, at: 0)
+        
+        let defaults = UserDefaults.standard
         
 //        let path = Bundle.main.path(forResource: "video", ofType: "mp4")
 //
@@ -42,6 +43,22 @@ class ViewController: UIViewController {
         
     }
 
-
+    @IBAction func loginAction(_ sender: Any) {
+        if usernameTextField.text == "" {
+            // Alert that the username field is empty
+            let alert = UIAlertController(title:"Login Error", message: "Please enter username.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
+                UIAlertAction in
+            }
+            alert.addAction(action)
+            self.present(alert, animated: true)
+        } else{
+            print("Saving username...performing segue.")
+            UserDefaults.standard.set(usernameTextField.text, forKey: "profile")
+            performSegue(withIdentifier: "loginSegue", sender: self)
+        }
+        
+    }
+    
 }
 

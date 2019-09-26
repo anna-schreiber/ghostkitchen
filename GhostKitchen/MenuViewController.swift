@@ -23,6 +23,9 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var selectionPhone: String = ""
     
     var filteredArray: [Menu] = []
+    var filteredMenu: [Menu] = []
+    
+    let name: String! = UserDefaults.standard.string(forKey: "profile") ?? ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +45,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // Filter the array to only include items for the selected restaurant
         filteredArray = masterMenu.filter{ $0.restaurant == selectionName }
+        if (name == "sarah"){
+            filteredMenu = filteredArray.filter({(menuItem : Menu) -> Bool in return menuItem.keywords.contains("vegetarian")
+            })
+            print(filteredMenu)
+        }
+        
     }
     /*
     // MARK: - Navigation
@@ -70,7 +79,17 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
          }
         cell.itemName.text = filteredArray[indexPath.row].item
         cell.itemPrice.text = String(format: "$%.02f", filteredArray[indexPath.row].price)
-
+        if (name == "sarah"){
+            if !(filteredArray[indexPath.row].keywords.contains("vegetarian")){
+                cell.backgroundColor = UIColor.lightGray
+                cell.addToCart.isHidden = true
+            }
+        }
+//        if !(filteredArray[indexPath.row].keywords.contains("vegetarian")){
+//            cell.isUserInteractionEnabled = false
+//            cell.backgroundColor = UIColor.lightGray
+//            cell.addToCart.isHidden = true
+//        }
          return cell
      }
     
@@ -86,14 +105,40 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         array.append(menuItem.item)
         defaults.set(array, forKey: "cart")
         
-        // Alert that the item was added to the cart
-        let alert = UIAlertController(title:"Hope you're hungry!", message: "Item successfully added to cart.", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Woohoo!", style: UIAlertAction.Style.default) {
-            UIAlertAction in
-            self.menuTableView.deselectRow(at: indexPath, animated: false)
+        if (name == "sarah") {
+            if !(filteredArray[indexPath.row].keywords.contains("vegetarian")){
+                // Alert that the item was added to the cart
+                let alert = UIAlertController(title:"Dietary Restriction Warning", message: "This item is not veggetarian.", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
+                    UIAlertAction in
+                    self.menuTableView.deselectRow(at: indexPath, animated: false)
+                }
+                alert.addAction(action)
+                //alert.addAction(UIAlertAction(title: "Woohoo!", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            } else{
+                // Alert that the item was added to the cart
+                let alert = UIAlertController(title:"Hope you're hungry!", message: "Item successfully added to cart.", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Woohoo!", style: UIAlertAction.Style.default) {
+                    UIAlertAction in
+                    self.menuTableView.deselectRow(at: indexPath, animated: false)
+                }
+                alert.addAction(action)
+                //alert.addAction(UIAlertAction(title: "Woohoo!", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            }
+
+        } else{
+            // Alert that the item was added to the cart
+            let alert = UIAlertController(title:"Hope you're hungry!", message: "Item successfully added to cart.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Woohoo!", style: UIAlertAction.Style.default) {
+                UIAlertAction in
+                self.menuTableView.deselectRow(at: indexPath, animated: false)
+            }
+            alert.addAction(action)
+            //alert.addAction(UIAlertAction(title: "Woohoo!", style: .default, handler: nil))
+            self.present(alert, animated: true)
         }
-        alert.addAction(action)
-        //alert.addAction(UIAlertAction(title: "Woohoo!", style: .default, handler: nil))
-        self.present(alert, animated: true)
+        
     }
 }
