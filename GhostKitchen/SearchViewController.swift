@@ -22,6 +22,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var searchTableView: UITableView!
     
     var filteredMenu: [Menu] = []
+    var filteredArray: [Menu] = []
+    
+    let name: String! = UserDefaults.standard.string(forKey: "profile") ?? ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +44,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchTableView.dataSource = self
         
         filteredMenu = masterMenu
+        
+        if (name == "sarah"){
+            filteredArray = filteredMenu.filter({(menuItem : Menu) -> Bool in return menuItem.keywords.contains("vegetarian")
+            })
+            print(filteredArray)
+        }
+        
         
     }
     
@@ -65,6 +75,17 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.menuItem.text = filteredMenu[indexPath.row].item
         cell.itemPrice.text = String(format: "$%.02f", filteredMenu[indexPath.row].price)
         
+        if (name == "sarah"){
+            if !(filteredMenu[indexPath.row].keywords.contains("vegetarian")){
+                print(cell.menuItem)
+                cell.backgroundColor = UIColor.lightGray
+                cell.addToCart.isHidden = true
+            } else{
+                cell.backgroundColor = nil
+                cell.addToCart.isHidden = false
+            }
+        }
+        
         return cell
     }
     
@@ -78,18 +99,51 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let menuItem: Menu = filteredMenu[indexPath.row]
         let defaults = UserDefaults.standard
         var array = defaults.object(forKey:"cart") as? [String] ?? [String]()
-        array.append(menuItem.item)
-        defaults.set(array, forKey: "cart")
+       // array.append(menuItem.item)
+       // defaults.set(array, forKey: "cart")
         
-        // Alert that the item was added to the cart
-        let alert = UIAlertController(title:"Hope you're hungry!", message: "Item successfully added to cart.", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Woohoo!", style: UIAlertAction.Style.default) {
-            UIAlertAction in
-            self.searchTableView.deselectRow(at: indexPath, animated: false)
+        if (name == "sarah") {
+            if !(filteredMenu[indexPath.row].keywords.contains("vegetarian")){
+                // Alert that the item was added to the cart
+                let alert = UIAlertController(title:"Dietary Restriction Warning", message: "This item is not vegetarian. Would you like to continue?", preferredStyle: .alert)
+                let actionOK = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) {
+                    UIAlertAction in
+                    self.searchTableView.deselectRow(at: indexPath, animated: false)
+                    array.append(menuItem.item)
+                    defaults.set(array, forKey: "cart")
+                }
+                let actionCancel = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel)
+                alert.addAction(actionOK)
+                alert.addAction(actionCancel)
+                //alert.addAction(UIAlertAction(title: "Woohoo!", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            } else{
+                // Alert that the item was added to the cart
+                let alert = UIAlertController(title:"Hope you're hungry!", message: "Item successfully added to cart.", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Woohoo!", style: UIAlertAction.Style.default) {
+                    UIAlertAction in
+                    self.searchTableView.deselectRow(at: indexPath, animated: false)
+                    array.append(menuItem.item)
+                    defaults.set(array, forKey: "cart")
+                }
+                alert.addAction(action)
+                //alert.addAction(UIAlertAction(title: "Woohoo!", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            }
+
+        } else{
+            // Alert that the item was added to the cart
+            let alert = UIAlertController(title:"Hope you're hungry!", message: "Item successfully added to cart.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Woohoo!", style: UIAlertAction.Style.default) {
+                UIAlertAction in
+                self.searchTableView.deselectRow(at: indexPath, animated: false)
+                array.append(menuItem.item)
+                defaults.set(array, forKey: "cart")
+            }
+            alert.addAction(action)
+            //alert.addAction(UIAlertAction(title: "Woohoo!", style: .default, handler: nil))
+            self.present(alert, animated: true)
         }
-        alert.addAction(action)
-        //alert.addAction(UIAlertAction(title: "Woohoo!", style: .default, handler: nil))
-        self.present(alert, animated: true)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){

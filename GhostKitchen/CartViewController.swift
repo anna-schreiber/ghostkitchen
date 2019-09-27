@@ -24,6 +24,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         let defaults = UserDefaults.standard
         let array = defaults.object(forKey:"cart") as? [String] ?? [String]()
         
+        print(array)
         
         self.cartTableView.rowHeight = 70
         
@@ -39,7 +40,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print(array)
+        //print(array)
         subtotal = 0.0
         cartTableView.reloadData()
         //checkCartStatus()
@@ -48,7 +49,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let defaults = UserDefaults.standard
         let array = defaults.object(forKey:"cart") as? [String] ?? [String]()
-        print(array)
+        //print(array)
         return array.count
     }
     
@@ -84,6 +85,10 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     */
     func checkCartStatus(){
+        
+        let defaults = UserDefaults.standard
+        let array = defaults.object(forKey:"cart") as? [String] ?? [String]()
+        print(array)
         if array.count == 0{
             subtotalLabel.text = "$0.00"
             // Alert that the item was added to the cart

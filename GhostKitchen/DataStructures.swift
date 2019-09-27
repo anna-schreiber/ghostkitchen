@@ -19,8 +19,6 @@ struct Menu {
 struct Restaurant {
     let name: String
     let image: UIImage
-    let address: String
-    let phone: String
 }
 
 struct Profile {
@@ -30,6 +28,12 @@ struct Profile {
     let address: String
     let phone: String
     var excludedIngredients: [String]
+}
+
+struct Order {
+    let date: String
+    let time: String
+    let total: String
 }
 
 // Load the menu data
@@ -65,16 +69,15 @@ let masterMenu: [Menu] = [Menu(restaurant: "McDorks", item: "Hamburger", price: 
                           Menu(restaurant: "Taco Horn", item: "Blue-Raspberry Slushie", price: 2.15, keywords: ["slushie", "drink", "rasperry","taco horn", "vegetarian"])]
 
 // Load the data into the restuarant object
-let data: [Restaurant] = [Restaurant(name: "McDorks", image: #imageLiteral(resourceName: "mcdorks"), address: "114 W Ronald Way",
-                                     phone: "(678) 123-1234"),
-                          Restaurant(name: "Subwong", image: #imageLiteral(resourceName: "Subwong"), address: "115 S Sandwich Drive", phone: "(678) 123-1234"),
-                          Restaurant(name: "Out & In", image: #imageLiteral(resourceName: "out-n-in"), address: "116 E Burger Drive", phone: "(678) 123-1234"),
-                          Restaurant(name: "Domiyes", image: #imageLiteral(resourceName: "domiyes"), address: "117 N Crusty Avenue", phone: "(678) 123-1234"),
-                          Restaurant(name: "Wendels", image: #imageLiteral(resourceName: "wendels"), address: "118 E Curly Fry Street", phone: "(678) 123-1234"),
-                          Restaurant(name: "Taco Horn", image: #imageLiteral(resourceName: "taco"), address: "118 Soft Shell Drive", phone: "(678) 123-1234")]
+let data: [Restaurant] = [Restaurant(name: "McDorks", image: #imageLiteral(resourceName: "mcdorks")),
+                          Restaurant(name: "Subwong", image: #imageLiteral(resourceName: "Subwong")),
+                          Restaurant(name: "Out & In", image: #imageLiteral(resourceName: "out-n-in")),
+                          Restaurant(name: "Domiyes", image: #imageLiteral(resourceName: "domiyes")),
+                          Restaurant(name: "Wendels", image: #imageLiteral(resourceName: "wendels")),
+                          Restaurant(name: "Taco Horn", image: #imageLiteral(resourceName: "taco"))]
 
 // Load fake profile data into the profile object
-let profile: [Profile] = [Profile(name: "John Smith", username: "john", profPic: #imageLiteral(resourceName: "john"), address: "12 W Courtland Ave", phone: "(678) 238-2873", excludedIngredients: ["None"]),
-                          Profile(name: "Sarah Johnson", username: "sarah", profPic: #imageLiteral(resourceName: "sarah"), address: "78 N 15th St", phone: "(678) 356-7629", excludedIngredients: ["Vegetarian"]),
-                          Profile(name: "Taylor Green", username: "taylor", profPic: #imageLiteral(resourceName: "taylor"), address: "872 E Lily Rd", phone: "(404) 368-8262", excludedIngredients: ["Nut allergy"]),
-                          Profile(name: "Ray Weathers", username: "ray", profPic: #imageLiteral(resourceName: "ray"), address: "932 S Peachtree St", phone: "(404) 386-9786", excludedIngredients: ["None"])]
+let profile: [Profile] = [Profile(name: "John Smith", username: "john", profPic: #imageLiteral(resourceName: "john"), address: "21 8th Street NE", phone: "(678) 238-2873", excludedIngredients: ["None"]),
+                          Profile(name: "Sarah Johnson", username: "sarah", profPic: #imageLiteral(resourceName: "sarah"), address: "21 8th Street NE", phone: "(678) 356-7629", excludedIngredients: ["Vegetarian"]),
+                          Profile(name: "Taylor Green", username: "taylor", profPic: #imageLiteral(resourceName: "taylor"), address: "21 8th Street NE", phone: "(404) 368-8262", excludedIngredients: ["Nut allergy"]),
+                          Profile(name: "Ray Weathers", username: "ray", profPic: #imageLiteral(resourceName: "ray"), address: "21 8th Street NE", phone: "(404) 386-9786", excludedIngredients: ["None"])]

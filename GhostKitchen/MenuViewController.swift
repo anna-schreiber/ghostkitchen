@@ -12,9 +12,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var restaurantTitle: UILabel!
     @IBOutlet weak var restaurantImage: UIImageView!
-    @IBOutlet weak var restaurantAddress: UILabel!
-    @IBOutlet weak var restaurantPhone: UILabel!
     @IBOutlet weak var menuTableView: UITableView!
+    @IBOutlet weak var tintView: UIView!
     
     // Initialize variables to hold the values passed from HomeViewController
     var selectionName: String = ""
@@ -33,12 +32,17 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Load the selected restaurant's info
         restaurantTitle.text = selectionName
         restaurantImage.image = selectionImage
-        restaurantAddress.text = selectionAddress
-        restaurantPhone.text = selectionPhone
         
         // Round edges of photo
-        restaurantImage.layer.cornerRadius = restaurantImage.frame.size.width / 6
-        restaurantImage.clipsToBounds = true
+        //restaurantImage.layer.cornerRadius = restaurantImage.frame.size.width / 6
+        //restaurantImage.clipsToBounds = false
+        let overlay = UIView(frame:CGRect(x: 0, y: 60, width: 414, height: 191))
+        overlay.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5)
+        
+        view.addSubview(restaurantImage)
+        view.addSubview(overlay)
+        view.addSubview(restaurantTitle)
+        //restaurantTitle.center = CGPoint(x: overlay.frame.x/2, y: overlay.frame.x/2, width: overlay, height: overlay)
         
         self.menuTableView.delegate = self
         self.menuTableView.dataSource = self

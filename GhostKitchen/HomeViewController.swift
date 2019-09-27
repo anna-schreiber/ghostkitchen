@@ -16,8 +16,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     // Intialize variables that will be assigned when you click a restaurant image
     var selectionName: String = ""
     var selectionImage: UIImage? = UIImage()
-    var selectionAddress: String = ""
-    var selectionPhone: String = ""
     
 
 
@@ -62,8 +60,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectionName = data[indexPath.item].name
         selectionImage = data[indexPath.item].image
-        selectionAddress = data[indexPath.item].address
-        selectionPhone = data[indexPath.item].phone
         
         performSegue(withIdentifier: "showMenu", sender: nil)
     }
@@ -74,8 +70,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         controller.selectionName = selectionName
         controller.selectionImage = selectionImage
-        controller.selectionAddress = selectionAddress
-        controller.selectionPhone = selectionPhone
     }
 
 }
