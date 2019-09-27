@@ -8,9 +8,12 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+    
 
     @IBOutlet weak var profilePic: UIImageView!
+    @IBOutlet weak var ordersTableView: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
@@ -50,7 +53,21 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return orders.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellIdentifier = "orderTableViewCell"
+         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? OrderTableViewCell else {
+             fatalError("The dequeued cell is not an instance of OrderTableViewCell")
+         }
+        cell.dateLabel.text = orders[indexPath.row].date
+        cell.timeLabel.text = orders[indexPath.row].time
+        cell.totalLabel.text = orders[indexPath.row].total
 
+         return cell
+    }
     /*
     // MARK: - Navigation
 

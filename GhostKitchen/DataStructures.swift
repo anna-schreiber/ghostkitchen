@@ -77,7 +77,10 @@ let data: [Restaurant] = [Restaurant(name: "McDorks", image: #imageLiteral(resou
                           Restaurant(name: "Taco Horn", image: #imageLiteral(resourceName: "taco"))]
 
 // Load fake profile data into the profile object
-let profile: [Profile] = [Profile(name: "John Smith", username: "john", profPic: #imageLiteral(resourceName: "john"), address: "21 8th Street NE", phone: "(678) 238-2873", excludedIngredients: ["None"]),
-                          Profile(name: "Sarah Johnson", username: "sarah", profPic: #imageLiteral(resourceName: "sarah"), address: "21 8th Street NE", phone: "(678) 356-7629", excludedIngredients: ["Vegetarian"]),
-                          Profile(name: "Taylor Green", username: "taylor", profPic: #imageLiteral(resourceName: "taylor"), address: "21 8th Street NE", phone: "(404) 368-8262", excludedIngredients: ["Nut allergy"]),
-                          Profile(name: "Ray Weathers", username: "ray", profPic: #imageLiteral(resourceName: "ray"), address: "21 8th Street NE", phone: "(404) 386-9786", excludedIngredients: ["None"])]
+let profile: [Profile] = [Profile(name: "John Smith", username: "john", profPic: #imageLiteral(resourceName: "john"), address: "21 8th Street NE", phone: "678-238-2873", excludedIngredients: ["None"]),
+                          Profile(name: "Sarah Johnson", username: "sarah", profPic: #imageLiteral(resourceName: "sarah"), address: "21 8th Street NE", phone: "678-356-7629", excludedIngredients: ["Vegetarian"]),
+                          Profile(name: "Taylor Green", username: "taylor", profPic: #imageLiteral(resourceName: "taylor"), address: "21 8th Street NE", phone: "404-368-8262", excludedIngredients: ["Nut allergy"]),
+                          Profile(name: "Ray Weathers", username: "ray", profPic: #imageLiteral(resourceName: "ray"), address: "21 8th Street NE", phone: "404-386-9786", excludedIngredients: ["None"])]
+
+let orders: [Order] = [Order(date: "9/12/2019", time: "7:49 pm", total: "$24.70"),
+                       Order(date: "9/29/2019", time: "1:13 pm", total: "$17.21")]
