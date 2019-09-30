@@ -15,18 +15,23 @@ class OrderViewController: UIViewController {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var subtotalLabel: UILabel!
     
+    // Initialize varibale to store the subtotal passed from the cart screen
     var orderTotal: Double = 0.0
     
+    // Initialize variable to receive the user's name
     let name: String! = UserDefaults.standard.string(forKey: "profile") ?? ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Load map image
         mapImage.image = UIImage(imageLiteralResourceName: "map")
+        
+        // Animate truck image across screen
         UIView.animate(withDuration: 2.0) {
             self.truckImage.frame.origin.x += 307
         }
+        
         loadProfileData()
         
         subtotalLabel.text = String(format: "$%.02f", orderTotal)
@@ -39,17 +44,4 @@ class OrderViewController: UIViewController {
             }
         }
     }
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

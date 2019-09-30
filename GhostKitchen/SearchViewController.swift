@@ -18,19 +18,18 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var coffeeButton: UIButton!
     @IBOutlet weak var pizzaButton: UIButton!
     @IBOutlet weak var subButton: UIButton!
-    
     @IBOutlet weak var searchTableView: UITableView!
     
+    // Initialize empty arrays to hold filtered menu
     var filteredMenu: [Menu] = []
-    var filteredArray: [Menu] = []
     
+    // Initialize variable to receive the user's name
     let name: String! = UserDefaults.standard.string(forKey: "profile") ?? ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        
+        // Round edges of filter buttons
         burgerButton.layer.cornerRadius = 5
         dessertButton.layer.cornerRadius = 5
         coffeeButton.layer.cornerRadius = 5
@@ -43,20 +42,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchTableView.delegate = self
         searchTableView.dataSource = self
         
+        // Upon load, show all menu items
         filteredMenu = masterMenu
-        
-        if (name == "sarah"){
-            filteredArray = filteredMenu.filter({(menuItem : Menu) -> Bool in return menuItem.keywords.contains("vegetarian")
-            })
-            print(filteredArray)
-        }
-        
-        
     }
     
+    // Return the number of items in the menu array
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredMenu.count
-//        return masterMenu.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -75,17 +67,21 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.menuItem.text = filteredMenu[indexPath.row].item
         cell.itemPrice.text = String(format: "$%.02f", filteredMenu[indexPath.row].price)
         
+        // Vegetarian use case: if the current user is Sarah, gray out non-vegetarian items
         if (name == "sarah"){
             if !(filteredMenu[indexPath.row].keywords.contains("vegetarian")){
                 print(cell.menuItem)
                 cell.backgroundColor = UIColor.lightGray
                 cell.addToCart.isHidden = true
+                cell.vegImage.isHidden = true
             } else{
                 cell.backgroundColor = nil
                 cell.addToCart.isHidden = false
+                // Displays vegetarian item icon
+                cell.vegImage.isHidden = false
+                cell.vegImage.image = UIImage(named: "veg-icon")
             }
         }
-        
         return cell
     }
     
@@ -95,29 +91,29 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             fatalError("The dequeued cell is not an instance of SearchTableViewCell.")
         }
         
-        // Uses user defaults to add item to cart
+        // Add the selected menu item to the cart
         let menuItem: Menu = filteredMenu[indexPath.row]
         let defaults = UserDefaults.standard
         var array = defaults.object(forKey:"cart") as? [String] ?? [String]()
-       // array.append(menuItem.item)
-       // defaults.set(array, forKey: "cart")
         
+        // Vegetarian use case: if the current user is Sarah, display a dietary warning if a non-vegetarian item is clicked
         if (name == "sarah") {
             if !(filteredMenu[indexPath.row].keywords.contains("vegetarian")){
-                // Alert that the item was added to the cart
                 let alert = UIAlertController(title:"Dietary Restriction Warning", message: "This item is not vegetarian. Would you like to continue?", preferredStyle: .alert)
                 let actionOK = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) {
                     UIAlertAction in
+                    // If 'yes' is clicked, add item to cart
                     self.searchTableView.deselectRow(at: indexPath, animated: false)
                     array.append(menuItem.item)
                     defaults.set(array, forKey: "cart")
                 }
+                // If 'cancel' is clicked, do not add item to cart
                 let actionCancel = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel)
                 alert.addAction(actionOK)
                 alert.addAction(actionCancel)
-                //alert.addAction(UIAlertAction(title: "Woohoo!", style: .default, handler: nil))
+                
                 self.present(alert, animated: true)
-            } else{
+            } else {
                 // Alert that the item was added to the cart
                 let alert = UIAlertController(title:"Hope you're hungry!", message: "Item successfully added to cart.", preferredStyle: .alert)
                 let action = UIAlertAction(title: "Woohoo!", style: UIAlertAction.Style.default) {
@@ -127,12 +123,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     defaults.set(array, forKey: "cart")
                 }
                 alert.addAction(action)
-                //alert.addAction(UIAlertAction(title: "Woohoo!", style: .default, handler: nil))
+                
                 self.present(alert, animated: true)
             }
 
-        } else{
-            // Alert that the item was added to the cart
+        } else { // If the user's name isn't Sarah, add item to cart regardless
             let alert = UIAlertController(title:"Hope you're hungry!", message: "Item successfully added to cart.", preferredStyle: .alert)
             let action = UIAlertAction(title: "Woohoo!", style: UIAlertAction.Style.default) {
                 UIAlertAction in
@@ -141,11 +136,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 defaults.set(array, forKey: "cart")
             }
             alert.addAction(action)
-            //alert.addAction(UIAlertAction(title: "Woohoo!", style: .default, handler: nil))
+            
             self.present(alert, animated: true)
         }
     }
     
+    // Reload the results each time a user types something
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         filteredMenu = masterMenu.filter({(menuItem : Menu) -> Bool in return menuItem.keywords.contains(searchText.lowercased())
         })
@@ -156,6 +152,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return searchMenu.text?.isEmpty ?? true
     }
     
+    // Return list of burgers only
     @IBAction func displayBurgers(_ sender: Any) {
         filteredMenu = masterMenu.filter({(menuItem : Menu) -> Bool in return menuItem.keywords.contains("burger")
         })
@@ -163,38 +160,32 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchTableView.reloadData()
     }
     
+    // Return list of desserts only
     @IBAction func displayDesserts(_ sender: Any) {
         filteredMenu = masterMenu.filter({(menuItem : Menu) -> Bool in return menuItem.keywords.contains("dessert")
         })
         searchTableView.reloadData()
     }
     
+    // Return list of coffee only
     @IBAction func displayCoffee(_ sender: Any) {
         filteredMenu = masterMenu.filter({(menuItem : Menu) -> Bool in return menuItem.keywords.contains("coffee")
         })
         searchTableView.reloadData()
     }
     
+    // Return list of pizza only
     @IBAction func displayPizza(_ sender: Any) {
         filteredMenu = masterMenu.filter({(menuItem : Menu) -> Bool in return menuItem.keywords.contains("pizza")
         })
         searchTableView.reloadData()
     }
     
+    // Return list of subs only
     @IBAction func displaySubs(_ sender: Any) {
         filteredMenu = masterMenu.filter({(menuItem : Menu) -> Bool in return menuItem.keywords.contains("sub")
         })
         searchTableView.reloadData()
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

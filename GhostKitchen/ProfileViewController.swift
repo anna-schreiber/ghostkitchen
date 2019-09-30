@@ -10,34 +10,30 @@ import UIKit
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    
-
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var ordersTableView: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var restrictionsLabel: UILabel!
-    var dietString: String = ""
     
+    // Initialize variable to receive the user's name
     let name: String! = UserDefaults.standard.string(forKey: "profile") ?? ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
-        //profilePic.image = #imageLiteral(resourceName: "sarah")
-        dietString = ""
-        
+        // Set graphic background as subview
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "profileBack")
         backgroundImage.contentMode = UIView.ContentMode.top
         self.view.insertSubview(backgroundImage, at: 0)
         
+        // Load in profile data
         loadProfileData()
         
     }
+    
     func loadProfileData(){
         for (index, item) in profile.enumerated(){
             if (profile[index].username == name) {
@@ -45,10 +41,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 nameLabel.text = item.name
                 addressLabel.text = profile[index].address
                 phoneLabel.text = profile[index].phone
-                for value in profile[index].excludedIngredients{
-                    dietString.append(value)
-                }
-                restrictionsLabel.text = dietString
+                restrictionsLabel.text = profile[index].excludedIngredients
             }
         }
     }
@@ -57,6 +50,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         return orders.count
     }
     
+    // Load past order data into the TableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "orderTableViewCell"
          guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? OrderTableViewCell else {
@@ -68,14 +62,5 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
          return cell
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

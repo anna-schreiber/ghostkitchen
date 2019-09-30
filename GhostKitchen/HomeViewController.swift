@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  HomeViewController.swift - this view is for the home screen, which displays a collection view of the restaurants
 //  GhostKitchen
 //
 //  Created by anna.schreiber on 9/17/19.
@@ -13,25 +13,20 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     // Initialize the collection view
     @IBOutlet weak var restaurantsCollection: UICollectionView!
     
-    // Intialize variables that will be assigned when you click a restaurant image
+    // Intialize variables to remember which restaurant was clicked
     var selectionName: String = ""
     var selectionImage: UIImage? = UIImage()
     
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
-//
-//        let attrs = [
-//            NSAttributedString.Key.foregroundColor: UIColor.red,
-//            NSAttributedString.Key.font: UIFont(name: "Rock Salt", size: 24)!
-//        ]
+        
+        // Add text to the navigation controller
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "RockSalt-Regular", size: 17)!, NSAttributedString.Key.foregroundColor: UIColor.red]
-//        UINavigationBar.appearance().titleTextAttributes = attrs
     }
 
     
-    // Adjust size of collectiom cell
+    // Adjust size of collection cell
     internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let padding: CGFloat = 10
         let collectionViewSize = restaurantsCollection.frame.size.width - padding
@@ -49,8 +44,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         cell.restaurantTitle.text = data[indexPath.item].name
         cell.restaurantImage.image = data[indexPath.item].image
         
-        // Format cell to have round edges
-        cell.restaurantImage.layer.cornerRadius = cell.restaurantImage.frame.size.width / 6
+        // Format image to have round edges
+        cell.restaurantImage.layer.cornerRadius = cell.restaurantImage.frame.size.width / 7
         cell.restaurantImage.clipsToBounds = true
     
         return cell
@@ -64,10 +59,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         performSegue(withIdentifier: "showMenu", sender: nil)
     }
     
-    // Persists the restaurant data from the selection to the menu screen
+    // Persists the restaurant data to the menu screen
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let controller = segue.destination as! MenuViewController
-        
         controller.selectionName = selectionName
         controller.selectionImage = selectionImage
     }

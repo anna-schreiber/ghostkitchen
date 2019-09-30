@@ -13,9 +13,7 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var restaurantImage: UIImageView!
     @IBOutlet weak var restaurantTitle: UILabel!
     
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//    }
+    // Load's the collection view cell with data from the Restaurant data model
     func displayContent(with model: Restaurant){
         restaurantImage.image = model.image
         restaurantTitle.text = model.name

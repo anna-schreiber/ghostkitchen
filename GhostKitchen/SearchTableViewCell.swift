@@ -15,6 +15,7 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var menuItem: UILabel!
     @IBOutlet weak var itemPrice: UILabel!
     @IBOutlet weak var addToCart: UIButton!
+    @IBOutlet weak var vegImage: UIImageView!
     
     
     override func awakeFromNib() {

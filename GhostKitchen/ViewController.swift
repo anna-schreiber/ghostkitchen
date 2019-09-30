@@ -15,51 +15,36 @@ class ViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
+        // Load background image as a subview
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "nugget")
         backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
+        
         self.view.insertSubview(backgroundImage, at: 0)
-        
-        let defaults = UserDefaults.standard
-        
-//        let path = Bundle.main.path(forResource: "video", ofType: "mp4")
-//
-//        var player = AVPlayer(url: NSURL(fileURLWithPath: path!) as URL)
-//
-//        let playerLayer = AVPlayerLayer(player: player)
-//
-//        playerLayer.frame = self.view.frame
-//        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-//        self.view.layer.addSublayer(playerLayer)
-//
-//        player.seek(to: CMTime.zero)
-//        player.play()
-        
-        
     }
     
+    // Clears cart data if a user logs out
     override func viewWillAppear(_ animated: Bool) {
         let defaults = UserDefaults.standard
         defaults.set([String](), forKey: "cart")
     }
-
+    
+    // When the login button is clicked, check if username field is empty
     @IBAction func loginAction(_ sender: Any) {
         if usernameTextField.text == "" {
-            // Alert that the username field is empty
+            // Alert when the username field is empty
             let alert = UIAlertController(title:"Login Error", message: "Please enter username.", preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
-                UIAlertAction in
-            }
+            let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
             alert.addAction(action)
+            
             self.present(alert, animated: true)
         } else{
-            print("Saving username...performing segue.")
+            // Set the user default value for profile to the username
             UserDefaults.standard.set(usernameTextField.text?.lowercased(), forKey: "profile")
+            
             performSegue(withIdentifier: "loginSegue", sender: self)
         }
         

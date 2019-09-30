@@ -15,15 +15,14 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var menuTableView: UITableView!
     @IBOutlet weak var tintView: UIView!
     
-    // Initialize variables to hold the values passed from HomeViewController
-    var selectionName: String = ""
-    var selectionImage: UIImage? = UIImage()
-    var selectionAddress: String = ""
-    var selectionPhone: String = ""
+    // Initialize variables to store restaurant data passed from HomeViewController
+    var selectionName: String = "" // restaurant name
+    var selectionImage: UIImage? = UIImage() // restaurant image
     
+    // Initialize empty arrays to hold filtered menu
     var filteredArray: [Menu] = []
-    var filteredMenu: [Menu] = []
     
+    // Initialize variable to receive the user's name
     let name: String! = UserDefaults.standard.string(forKey: "profile") ?? ""
     
     override func viewDidLoad() {
@@ -33,44 +32,26 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         restaurantTitle.text = selectionName
         restaurantImage.image = selectionImage
         
-        // Round edges of photo
-        //restaurantImage.layer.cornerRadius = restaurantImage.frame.size.width / 6
-        //restaurantImage.clipsToBounds = false
+        // Layer gray overlay and white text onto the restaurant image
         let overlay = UIView(frame:CGRect(x: 0, y: 60, width: 414, height: 191))
         overlay.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5)
-        
         view.addSubview(restaurantImage)
         view.addSubview(overlay)
         view.addSubview(restaurantTitle)
-        //restaurantTitle.center = CGPoint(x: overlay.frame.x/2, y: overlay.frame.x/2, width: overlay, height: overlay)
         
         self.menuTableView.delegate = self
         self.menuTableView.dataSource = self
         
         // Filter the array to only include items for the selected restaurant
         filteredArray = masterMenu.filter{ $0.restaurant == selectionName }
-        if (name == "sarah"){
-            filteredMenu = filteredArray.filter({(menuItem : Menu) -> Bool in return menuItem.keywords.contains("vegetarian")
-            })
-            print(filteredMenu)
-        }
-        
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
+    // The TableView only has 1 section
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    // Depending on which restaurant was selected, return the size of the filtered array
+    // Depending on which restaurant was selected, return the number of menu items (size of filtered array)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredArray.count
      }
@@ -83,47 +64,50 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
          }
         cell.itemName.text = filteredArray[indexPath.row].item
         cell.itemPrice.text = String(format: "$%.02f", filteredArray[indexPath.row].price)
+        
+        // Vegetarian use case: if the current user is Sarah, turn the cell gray and remove the 'plus' button
         if (name == "sarah"){
             if !(filteredArray[indexPath.row].keywords.contains("vegetarian")){
                 cell.backgroundColor = UIColor.lightGray
                 cell.addToCart.isHidden = true
+            } else{
+                // Displays vegetarian item icon
+                cell.vegImage.image = UIImage(named: "veg-icon")
             }
         }
-//        if !(filteredArray[indexPath.row].keywords.contains("vegetarian")){
-//            cell.isUserInteractionEnabled = false
-//            cell.backgroundColor = UIColor.lightGray
-//            cell.addToCart.isHidden = true
-//        }
          return cell
      }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellIdentifier = "menuTableViewCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MenuTableViewCell else {
             fatalError("The dequeued cell is not an instance of MenuTableViewCell")
         }
-        // Add the selected menu items to an array and add them to the cart
+        
+        // Add the selected menu item to the cart
         let menuItem: Menu = filteredArray[indexPath.row]
         let defaults = UserDefaults.standard
         var array = defaults.object(forKey:"cart") as? [String] ?? [String]()
         
-        
+        // Vegetarian use case: if the current user is Sarah, display a dietary warning if a non-vegetarian item is clicked
         if (name == "sarah") {
             if !(filteredArray[indexPath.row].keywords.contains("vegetarian")){
-                // Alert that the item was added to the cart
                 let alert = UIAlertController(title:"Dietary Restriction Warning", message: "This item is not vegetarian. Would you like to continue?", preferredStyle: .alert)
                 let actionOK = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) {
                     UIAlertAction in
                     self.menuTableView.deselectRow(at: indexPath, animated: false)
+                    // If 'yes' is clicked, add item to cart
                     array.append(menuItem.item)
                     defaults.set(array, forKey: "cart")
                 }
+                // If 'cancel' is clicked, do not add item to cart
                 let actionCancel = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel)
                 alert.addAction(actionOK)
                 alert.addAction(actionCancel)
-                //alert.addAction(UIAlertAction(title: "Woohoo!", style: .default, handler: nil))
+                
                 self.present(alert, animated: true)
-            } else{
+            } else {
                 // Alert that the item was added to the cart
                 let alert = UIAlertController(title:"Hope you're hungry!", message: "Item successfully added to cart.", preferredStyle: .alert)
                 let action = UIAlertAction(title: "Woohoo!", style: UIAlertAction.Style.default) {
@@ -133,12 +117,11 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     defaults.set(array, forKey: "cart")
                 }
                 alert.addAction(action)
-                //alert.addAction(UIAlertAction(title: "Woohoo!", style: .default, handler: nil))
+                
                 self.present(alert, animated: true)
             }
 
-        } else{
-            // Alert that the item was added to the cart
+        } else { // If the user's name isn't Sarah, add item to cart regardless
             let alert = UIAlertController(title:"Hope you're hungry!", message: "Item successfully added to cart.", preferredStyle: .alert)
             let action = UIAlertAction(title: "Woohoo!", style: UIAlertAction.Style.default) {
                 UIAlertAction in
@@ -147,9 +130,10 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 defaults.set(array, forKey: "cart")
             }
             alert.addAction(action)
-            //alert.addAction(UIAlertAction(title: "Woohoo!", style: .default, handler: nil))
+            
             self.present(alert, animated: true)
         }
         
     }
+    
 }

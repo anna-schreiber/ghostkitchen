@@ -13,6 +13,7 @@ class MenuTableViewCell: UITableViewCell {
     @IBOutlet weak var itemName: UILabel!
     @IBOutlet weak var itemPrice: UILabel!
     @IBOutlet weak var addToCart: UIButton!
+    @IBOutlet weak var vegImage: UIImageView!
     
 
     override func awakeFromNib() {
