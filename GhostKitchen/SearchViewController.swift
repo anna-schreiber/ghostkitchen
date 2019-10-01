@@ -15,7 +15,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var burgerButton: UIButton!
     @IBOutlet weak var dessertButton: UIButton!
-    @IBOutlet weak var coffeeButton: UIButton!
+    @IBOutlet weak var veggieButton: UIButton!
     @IBOutlet weak var pizzaButton: UIButton!
     @IBOutlet weak var subButton: UIButton!
     @IBOutlet weak var searchTableView: UITableView!
@@ -32,7 +32,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Round edges of filter buttons
         burgerButton.layer.cornerRadius = 5
         dessertButton.layer.cornerRadius = 5
-        coffeeButton.layer.cornerRadius = 5
+        veggieButton.layer.cornerRadius = 5
         pizzaButton.layer.cornerRadius = 5
         subButton.layer.cornerRadius = 5
         
@@ -174,9 +174,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchTableView.reloadData()
     }
     
-    // Return list of coffee only
-    @IBAction func displayCoffee(_ sender: Any) {
-        filteredMenu = masterMenu.filter({(menuItem : Menu) -> Bool in return menuItem.keywords.contains("coffee")
+    @IBAction func displayVegetarian(_ sender: Any) {
+        filteredMenu = masterMenu.filter({(menuItem : Menu) -> Bool in return menuItem.keywords.contains("vegetarian")
         })
         searchTableView.reloadData()
     }
