@@ -25,7 +25,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // Set graphic background as subview
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-        backgroundImage.image = UIImage(named: "profileBack")
+        backgroundImage.image = UIImage(named: "profileBack2")
         backgroundImage.contentMode = UIView.ContentMode.top
         self.view.insertSubview(backgroundImage, at: 0)
         

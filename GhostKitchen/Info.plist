@@ -8,6 +8,24 @@
 		<string>Manjari-Regular.ttf</string>
 		<string>Manjari-Thin.ttf</string>
 		<string>RockSalt-Regular.ttf</string>
+		<string>Graphik-Black-App.ttf</string>
+		<string>Graphik-Extralight-App.ttf</string>
+		<string>Graphik-ThinItalic-App.ttf</string>
+		<string>Graphik-ExtralightItalic-App.ttf</string>
+		<string>Graphik-LightItalic-App.ttf</string>
+		<string>Graphik-Medium-App.ttf</string>
+		<string>Graphik-Thin-App.ttf</string>
+		<string>Graphik-Regular-App.ttf</string>
+		<string>Graphik-MediumItalic-App.ttf</string>
+		<string>Graphik-RegularItalic-App.ttf</string>
+		<string>Graphik-Semibold-App.ttf</string>
+		<string>Graphik-Light-App.ttf</string>
+		<string>Graphik-BoldItalic-App.ttf</string>
+		<string>Graphik-SemiboldItalic-App.ttf</string>
+		<string>Graphik-Super-App.ttf</string>
+		<string>Graphik-Bold-App.ttf</string>
+		<string>Graphik-SuperItalic-App.ttf</string>
+		<string>Graphik-BlackItalic-App.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>

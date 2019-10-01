@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         
         // Load background image as a subview
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-        backgroundImage.image = UIImage(named: "nugget")
+        backgroundImage.image = UIImage(named: "fork")
         backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
         
         self.view.insertSubview(backgroundImage, at: 0)

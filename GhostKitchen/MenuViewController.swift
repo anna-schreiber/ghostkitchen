@@ -67,11 +67,14 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // Vegetarian use case: if the current user is Sarah, turn the cell gray and remove the 'plus' button
         if (name == "sarah"){
-            if !(filteredArray[indexPath.row].keywords.contains("vegetarian")){
-                cell.backgroundColor = UIColor.lightGray
-                cell.addToCart.isHidden = true
-            } else{
-                // Displays vegetarian item icon
+//            if !(filteredArray[indexPath.row].keywords.contains("vegetarian")){
+//                cell.backgroundColor = UIColor.lightGray
+//                cell.addToCart.isHidden = true
+//            } else{
+//                // Displays vegetarian item icon
+//                cell.vegImage.image = UIImage(named: "veg-icon")
+//            }
+            if (filteredArray[indexPath.row].keywords.contains("vegetarian")){
                 cell.vegImage.image = UIImage(named: "veg-icon")
             }
         }

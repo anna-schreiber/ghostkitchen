@@ -69,18 +69,25 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // Vegetarian use case: if the current user is Sarah, gray out non-vegetarian items
         if (name == "sarah"){
-            if !(filteredMenu[indexPath.row].keywords.contains("vegetarian")){
-                print(cell.menuItem)
-                cell.backgroundColor = UIColor.lightGray
-                cell.addToCart.isHidden = true
-                cell.vegImage.isHidden = true
-            } else{
-                cell.backgroundColor = nil
-                cell.addToCart.isHidden = false
+            if (filteredMenu[indexPath.row].keywords.contains("vegetarian")){
                 // Displays vegetarian item icon
                 cell.vegImage.isHidden = false
                 cell.vegImage.image = UIImage(named: "veg-icon")
+            } else{
+                cell.vegImage.isHidden = true
             }
+//            if !(filteredMenu[indexPath.row].keywords.contains("vegetarian")){
+//                print(cell.menuItem)
+//                cell.backgroundColor = UIColor.lightGray
+//                cell.addToCart.isHidden = true
+//                cell.vegImage.isHidden = true
+//            } else{
+//                cell.backgroundColor = nil
+//                cell.addToCart.isHidden = false
+//                // Displays vegetarian item icon
+//                cell.vegImage.isHidden = false
+//                cell.vegImage.image = UIImage(named: "veg-icon")
+//            }
         }
         return cell
     }

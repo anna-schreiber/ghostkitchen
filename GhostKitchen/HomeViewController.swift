@@ -22,7 +22,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         super.viewDidLoad()
         
         // Add text to the navigation controller
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "RockSalt-Regular", size: 17)!, NSAttributedString.Key.foregroundColor: UIColor.red]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Manjari-Bold", size: 20)!, NSAttributedString.Key.foregroundColor: UIColor.systemPurple]
     }
 
     
