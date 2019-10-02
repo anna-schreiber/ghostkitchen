@@ -30,10 +30,11 @@ class OrderViewController: UIViewController {
         // Load map image
         mapImage.image = UIImage(imageLiteralResourceName: "map")
         
+        self.statusImage.frame.origin.x = -70
+        
         // Animate truck image across screen
-        UIView.animate(withDuration: 1.5) {
-            //self.truckImage.frame.origin.x += 307
-            self.statusImage.frame.size = CGSize(width: 90, height: 40)
+        UIView.animate(withDuration: 0.8) {
+            self.statusImage.frame.origin.x += 85
         }
         
         loadProfileData()
