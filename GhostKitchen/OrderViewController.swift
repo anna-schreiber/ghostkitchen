@@ -12,6 +12,9 @@ class OrderViewController: UIViewController {
     
     @IBOutlet weak var mapImage: UIImageView!
     @IBOutlet weak var truckImage: UIImageView!
+    @IBOutlet weak var statusImage: UIImageView!
+    @IBOutlet weak var journeyImage: UIImageView!
+    
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var subtotalLabel: UILabel!
     
@@ -28,8 +31,9 @@ class OrderViewController: UIViewController {
         mapImage.image = UIImage(imageLiteralResourceName: "map")
         
         // Animate truck image across screen
-        UIView.animate(withDuration: 2.0) {
-            self.truckImage.frame.origin.x += 307
+        UIView.animate(withDuration: 1.5) {
+            //self.truckImage.frame.origin.x += 307
+            self.statusImage.frame.size = CGSize(width: 90, height: 40)
         }
         
         loadProfileData()

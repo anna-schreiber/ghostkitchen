@@ -15,6 +15,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var menuTableView: UITableView!
     @IBOutlet weak var tintView: UIView!
     
+    var popup: UIView!
+    
     // Initialize variables to store restaurant data passed from HomeViewController
     var selectionName: String = "" // restaurant name
     var selectionImage: UIImage? = UIImage() // restaurant image
@@ -120,7 +122,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     defaults.set(array, forKey: "cart")
                 }
                 alert.addAction(action)
-                
+
                 self.present(alert, animated: true)
             }
 
@@ -133,10 +135,9 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 defaults.set(array, forKey: "cart")
             }
             alert.addAction(action)
-            
+
             self.present(alert, animated: true)
         }
         
     }
-    
 }

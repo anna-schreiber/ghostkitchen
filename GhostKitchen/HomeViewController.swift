@@ -21,8 +21,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Add text to the navigation controller
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Manjari-Bold", size: 20)!, NSAttributedString.Key.foregroundColor: UIColor.systemPurple]
     }
 
     
