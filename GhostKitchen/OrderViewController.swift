@@ -34,7 +34,7 @@ class OrderViewController: UIViewController {
         
         // Animate truck image across screen
         UIView.animate(withDuration: 0.8) {
-            self.statusImage.frame.origin.x += 85
+            self.statusImage.frame.origin.x += 82
         }
         
         loadProfileData()

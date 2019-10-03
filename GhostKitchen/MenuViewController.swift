@@ -67,19 +67,20 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.itemName.text = filteredArray[indexPath.row].item
         cell.itemPrice.text = String(format: "$%.02f", filteredArray[indexPath.row].price)
         
-        // Vegetarian use case: if the current user is Sarah, turn the cell gray and remove the 'plus' button
+        // Vegetarian use case: if the current user is Sarah, add an icon to the cell
         if (name == "sarah"){
-//            if !(filteredArray[indexPath.row].keywords.contains("vegetarian")){
-//                cell.backgroundColor = UIColor.lightGray
-//                cell.addToCart.isHidden = true
-//            } else{
-//                // Displays vegetarian item icon
-//                cell.vegImage.image = UIImage(named: "veg-icon")
-//            }
             if (filteredArray[indexPath.row].keywords.contains("vegetarian")){
                 cell.vegImage.image = UIImage(named: "veg-icon")
+                // icon via https://icons8.com/icons/set/vegetarian-mark--v1
             }
-        }
+            
+            // icon via https://icons8.com/icons/set/no-milk
+        } else if (name == "taylor"){ // Dairy allergy use case: if the current user is Taylor, add an icon to the cell
+            if (filteredArray[indexPath.row].keywords.contains("dairy-free")){
+                cell.vegImage.image = UIImage(named: "dairy-icon")
+                // icon via https://icons8.com/icons/set/vegetarian-mark--v1
+            }
+        } else {}
          return cell
      }
     
@@ -114,30 +115,53 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.present(alert, animated: true)
             } else {
                 // Alert that the item was added to the cart
-                let alert = UIAlertController(title:"Hope you're hungry!", message: "Item successfully added to cart.", preferredStyle: .alert)
-                let action = UIAlertAction(title: "Woohoo!", style: UIAlertAction.Style.default) {
+                woohooAlert()
+                
+                self.menuTableView.deselectRow(at: indexPath, animated: false)
+                array.append(menuItem.item)
+                defaults.set(array, forKey: "cart")
+                
+            }
+
+        } else if(name == "taylor"){
+            if !(filteredArray[indexPath.row].keywords.contains("dairy-free")){
+                let alert = UIAlertController(title:"Dietary Restriction Warning", message: "This item contains dairy. Would you like to continue?", preferredStyle: .alert)
+                let actionOK = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) {
                     UIAlertAction in
                     self.menuTableView.deselectRow(at: indexPath, animated: false)
+                    // If 'yes' is clicked, add item to cart
                     array.append(menuItem.item)
                     defaults.set(array, forKey: "cart")
                 }
-                alert.addAction(action)
-
+                // If 'cancel' is clicked, do not add item to cart
+                let actionCancel = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel)
+                alert.addAction(actionOK)
+                alert.addAction(actionCancel)
+                
                 self.present(alert, animated: true)
-            }
-
-        } else { // If the user's name isn't Sarah, add item to cart regardless
-            let alert = UIAlertController(title:"Hope you're hungry!", message: "Item successfully added to cart.", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Woohoo!", style: UIAlertAction.Style.default) {
-                UIAlertAction in
+            } else{
+                // Alert that the item was added to the cart
+                woohooAlert()
+                
                 self.menuTableView.deselectRow(at: indexPath, animated: false)
                 array.append(menuItem.item)
                 defaults.set(array, forKey: "cart")
             }
-            alert.addAction(action)
-
-            self.present(alert, animated: true)
+        } else { // If the user's name isn't Sarah, add item to cart regardless
+            // Alert that the item was added to the cart
+            woohooAlert()
+            
+            self.menuTableView.deselectRow(at: indexPath, animated: false)
+            array.append(menuItem.item)
+            defaults.set(array, forKey: "cart")
         }
         
+    }
+    func woohooAlert(){
+        let alert = UIAlertController(title:"Hope you're hungry!", message: "Item successfully added to cart.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Woohoo!", style: UIAlertAction.Style.default)
+        alert.addAction(action)
+
+        self.present(alert, animated: true)
     }
 }

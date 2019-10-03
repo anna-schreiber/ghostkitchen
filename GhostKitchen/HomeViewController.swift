@@ -21,14 +21,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    }
 
+    }
     
     // Adjust size of collection cell
     internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let padding: CGFloat = 10
+        let padding: CGFloat = 50
         let collectionViewSize = restaurantsCollection.frame.size.width - padding
-        return CGSize(width: collectionViewSize/2, height: collectionViewSize/2)
+        return CGSize(width: collectionViewSize/1.9, height: collectionViewSize/1.90)
     }
     
     // Return the number of items in the data object to determine how many cells to display

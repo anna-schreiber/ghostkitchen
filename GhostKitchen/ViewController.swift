@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -30,6 +30,27 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         let defaults = UserDefaults.standard
         defaults.set([String](), forKey: "cart")
+        usernameTextField.text = ""
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        usernameTextField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        loginButton.isEnabled = false
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y - 200, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        })
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        loginButton.isEnabled = true
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y + 200, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        })
     }
     
     // When the login button is clicked, check if username field is empty
