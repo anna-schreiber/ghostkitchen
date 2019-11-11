@@ -36,13 +36,13 @@ class OrderViewController: UIViewController {
         
 
         // Animate 'order placed' image across screen
-        UIView.animate(withDuration: 0.9) {
+        UIView.animate(withDuration: 0.9, delay: 0.8, options: [], animations: {
             self.circleImage.frame.size.width += 40
             self.circleImage.frame.size.height += 40
             self.circleImage.frame.origin.x += 124
             self.circleImage.frame.origin.y -= 99
       
-        }
+        })
         
         loadProfileData()
         

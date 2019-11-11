@@ -20,8 +20,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     // Initialize variable to receive the user's name
     let name: String! = UserDefaults.standard.string(forKey: "profile") ?? ""
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(name)
         
         // Set graphic background as subview
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)

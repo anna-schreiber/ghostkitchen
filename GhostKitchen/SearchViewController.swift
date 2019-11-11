@@ -180,6 +180,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return searchMenu.text?.isEmpty ?? true
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchMenu.resignFirstResponder()
+    }
+    
     // Return list of burgers only
     @IBAction func displayBurgers(_ sender: Any) {
         filteredMenu = masterMenu.filter({(menuItem : Menu) -> Bool in return menuItem.keywords.contains("burger")

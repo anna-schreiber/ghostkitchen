@@ -65,7 +65,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         } else{
             // Set the user default value for profile to the username
             UserDefaults.standard.set(usernameTextField.text?.lowercased(), forKey: "profile")
-            
+            print(usernameTextField.text)
             performSegue(withIdentifier: "loginSegue", sender: self)
         }
         
