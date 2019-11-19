@@ -24,7 +24,6 @@ struct Restaurant {
 struct Profile {
     let name: String
     let username: String
-    let profPic: UIImage
     let address: String
     let phone: String
     var excludedIngredients: String
@@ -66,7 +65,7 @@ let masterMenu: [Menu] = [Menu(restaurant: "Micky Dee's", item: "Hamburger", pri
                           Menu(restaurant: "Taco Horn", item: "Chicken Nacho Bowl", price: 5.99, keywords: ["chicken", "nacho", "mexican","taco horn"]),
                           Menu(restaurant: "Taco Horn", item: "Veggie Quesadilla", price: 4.89, keywords: ["veggie", "vegetarian", "quesadilla", "mexican","taco horn"]),
                           Menu(restaurant: "Taco Horn", item: "Mexican Pizza", price: 6.39, keywords: ["mexican", "pizza","taco horn"]),
-                          Menu(restaurant: "Taco Horn", item: "Blue-Raspberry Slushie", price: 2.15, keywords: ["slushie", "drink", "rasperry","taco horn", "vegetarian", "dairy-free"])]
+                          Menu(restaurant: "Taco Horn", item: "Tropical Slushie", price: 2.15, keywords: ["slushie", "drink", "rasperry","taco horn", "vegetarian", "dairy-free"])]
 
 // Restaurant data
 let data: [Restaurant] = [Restaurant(name: "Micky Dee's", image: #imageLiteral(resourceName: "mcdorks")),
@@ -77,27 +76,37 @@ let data: [Restaurant] = [Restaurant(name: "Micky Dee's", image: #imageLiteral(r
                           Restaurant(name: "Taco Horn", image: #imageLiteral(resourceName: "taco"))]
 
 // Profile data
-let profile: [Profile] = [Profile(name: "John Smith", username: "john", profPic: #imageLiteral(resourceName: "john"), address: "21 8th Street NE", phone: "678-238-2873", excludedIngredients: "None"),
-                          Profile(name: "Sarah Johnson", username: "sarah", profPic: #imageLiteral(resourceName: "sarah"), address: "21 8th Street NE", phone: "678-356-7629", excludedIngredients: "Vegetarian"),
-                          Profile(name: "Taylor Green", username: "taylor", profPic: #imageLiteral(resourceName: "taylor"), address: "21 8th Street NE", phone: "404-368-8262", excludedIngredients: "Dairy Allergy"),
-                          Profile(name: "Ray Weathers", username: "ray", profPic: #imageLiteral(resourceName: "ray"), address: "21 8th Street NE", phone: "404-386-9786", excludedIngredients: "Gluten allergy"),
-                          Profile(name: "Michael Stutts", username: "michaels", profPic: #imageLiteral(resourceName: "john"), address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
-                          Profile(name: "Michael Healy", username: "michaelh", profPic: #imageLiteral(resourceName: "john"), address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
-                          Profile(name: "John Massari", username: "johnm", profPic: #imageLiteral(resourceName: "john"), address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
-                          Profile(name: "Baker Smith", username: "bakers", profPic: #imageLiteral(resourceName: "john"), address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"), // Complete
-                          Profile(name: "Jackie Woodward", username: "jackiew", profPic: #imageLiteral(resourceName: "john"), address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
-                          Profile(name: "Jennifer Smith", username: "jennifers", profPic: #imageLiteral(resourceName: "john"), address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
-                          Profile(name: "Adam Padgett", username: "adamp", profPic: #imageLiteral(resourceName: "john"), address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
-                          Profile(name: "Jay Amburkar", username: "jaya", profPic: #imageLiteral(resourceName: "john"), address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
-                          Profile(name: "Jen Pritchard", username: "jenp", profPic: #imageLiteral(resourceName: "john"), address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
-                          Profile(name: "Delfina Reimers", username: "delfinar", profPic: #imageLiteral(resourceName: "john"), address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
-                          Profile(name: "Bob Raidt", username: "bobr", profPic: #imageLiteral(resourceName: "john"), address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
-                          Profile(name: "Mike Vandall", username: "mikev", profPic: #imageLiteral(resourceName: "john"), address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
-                          Profile(name: "Renato Scaff", username: "renatos", profPic: #imageLiteral(resourceName: "john"), address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
-                          Profile(name: "Lori Zumwinkle", username: "loriz", profPic: #imageLiteral(resourceName: "john"), address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
-                          Profile(name: "Cliff Pleau", username: "cliffp", profPic: #imageLiteral(resourceName: "john"), address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
-                          Profile(name: "Brett Patterson", username: "brettp", profPic: #imageLiteral(resourceName: "john"), address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
-                          Profile(name: "Rene van Camp", username: "renevc", profPic: #imageLiteral(resourceName: "john"), address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None")] // Complete
+let profile: [Profile] = [Profile(name: "John Smith", username: "john", address: "21 8th Street NE", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Sarah Johnson", username: "sarah", address: "21 8th Street NE", phone: "678-356-7629", excludedIngredients: "Vegetarian"),
+                          Profile(name: "Taylor Green", username: "taylor", address: "21 8th Street NE", phone: "404-368-8262", excludedIngredients: "Dairy Allergy"),
+                          Profile(name: "Ray Weathers", username: "ray", address: "21 8th Street NE", phone: "404-386-9786", excludedIngredients: "Gluten allergy"),
+                          Profile(name: "Michael Stutts", username: "michaels", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Michael Healy", username: "michaelh", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "John Massari", username: "johnm", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Baker Smith", username: "bakers", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"), // Complete
+                          Profile(name: "Jackie Woodward", username: "jackiew", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Jennifer Smith", username: "jennifers", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Adam Padgett", username: "adamp", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Jay Amburkar", username: "jaya", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "Vegetarian"),
+                          Profile(name: "Jen Pritchard", username: "jenp", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Delfina Reimers", username: "delfinar", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Bob Raidt", username: "bobr", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Mike Vandall", username: "mikev", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Renato Scaff", username: "renatos",  address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Lori Zumwinkle", username: "loriz", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Cliff Pleau", username: "cliffp",  address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Brett Patterson", username: "brettp",  address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Rene van Camp", username: "renevc",  address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Katrina DeSantis", username: "katrinad", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "Dairy Allergy"),
+                          Profile(name: "Stephanie Sentell", username: "stephanies", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Vans Nelson", username: "vansn", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Mary Grace Fisher", username: "maryf", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Joe Guith", username: "joeg", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Beto Guajardo", username: "betog", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Michael Robinson", username: "michaelr", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Cassidy Beadle", username: "cassidyb", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Craig Frankel", username: "craigf", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Stephen Boyd", username: "stephenb", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None")]
 // Past order data
-let orders: [Order] = [Order(date: "9/12/2019", time: "7:49 pm", total: "$24.70"),
-                       Order(date: "9/29/2019", time: "1:13 pm", total: "$17.21")]
+let orders: [Order] = [Order(date: "9/29/2019", time: "7:49 pm", total: "$24.70"),
+                       Order(date: "9/12/2019", time: "1:13 pm", total: "$17.21")]

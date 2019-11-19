@@ -29,7 +29,9 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        print(name)
+        
         // Load the selected restaurant's info
         restaurantTitle.text = selectionName
         restaurantImage.image = selectionImage
@@ -68,14 +70,14 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.itemPrice.text = String(format: "$%.02f", filteredArray[indexPath.row].price)
         
         // Vegetarian use case: if the current user is Sarah, add an icon to the cell
-        if (name == "sarah"){
+        if (name == "sarah") || (name == "jaya"){
             if (filteredArray[indexPath.row].keywords.contains("vegetarian")){
                 cell.vegImage.image = UIImage(named: "veg-icon")
                 // icon via https://icons8.com/icons/set/vegetarian-mark--v1
             }
             
             // icon via https://icons8.com/icons/set/no-milk
-        } else if (name == "taylor"){ // Dairy allergy use case: if the current user is Taylor, add an icon to the cell
+        } else if (name == "taylor") || (name == "katrinad"){ // Dairy allergy use case: if the current user is Taylor, add an icon to the cell
             if (filteredArray[indexPath.row].keywords.contains("dairy-free")){
                 cell.vegImage.image = UIImage(named: "dairy-icon")
                 // icon via https://icons8.com/icons/set/vegetarian-mark--v1
@@ -97,7 +99,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         var array = defaults.object(forKey:"cart") as? [String] ?? [String]()
         
         // Vegetarian use case: if the current user is Sarah, display a dietary warning if a non-vegetarian item is clicked
-        if (name == "sarah") {
+        if (name == "sarah") || (name == "jaya") {
             if !(filteredArray[indexPath.row].keywords.contains("vegetarian")){
                 let alert = UIAlertController(title:"Dietary Restriction Warning", message: "This item is not vegetarian. Would you like to continue?", preferredStyle: .alert)
                 let actionOK = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) {
@@ -123,7 +125,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 
             }
 
-        } else if(name == "taylor"){
+        } else if(name == "taylor") || (name == "katrinad"){
             if !(filteredArray[indexPath.row].keywords.contains("dairy-free")){
                 let alert = UIAlertController(title:"Dietary Restriction Warning", message: "This item contains dairy. Would you like to continue?", preferredStyle: .alert)
                 let actionOK = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) {
