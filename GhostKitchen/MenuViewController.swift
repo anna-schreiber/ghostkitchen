@@ -70,7 +70,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.itemPrice.text = String(format: "$%.02f", filteredArray[indexPath.row].price)
         
         // Vegetarian use case: if the current user is Sarah, add an icon to the cell
-        if (name == "sarah") || (name == "jaya"){
+        if (name == "sarah") || (name == "jaya") || (name == "sagarg"){
             if (filteredArray[indexPath.row].keywords.contains("vegetarian")){
                 cell.vegImage.image = UIImage(named: "veg-icon")
                 // icon via https://icons8.com/icons/set/vegetarian-mark--v1
@@ -99,7 +99,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         var array = defaults.object(forKey:"cart") as? [String] ?? [String]()
         
         // Vegetarian use case: if the current user is Sarah, display a dietary warning if a non-vegetarian item is clicked
-        if (name == "sarah") || (name == "jaya") {
+        if (name == "sarah") || (name == "jaya") || (name == "sagarg"){
             if !(filteredArray[indexPath.row].keywords.contains("vegetarian")){
                 let alert = UIAlertController(title:"Dietary Restriction Warning", message: "This item is not vegetarian. Would you like to continue?", preferredStyle: .alert)
                 let actionOK = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) {

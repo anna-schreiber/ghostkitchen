@@ -83,7 +83,7 @@ let profile: [Profile] = [Profile(name: "John Smith", username: "john", address:
                           Profile(name: "Michael Stutts", username: "michaels", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
                           Profile(name: "Michael Healy", username: "michaelh", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
                           Profile(name: "John Massari", username: "johnm", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
-                          Profile(name: "Baker Smith", username: "bakers", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"), // Complete
+                          Profile(name: "Baker Smith", username: "bakers", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
                           Profile(name: "Jackie Woodward", username: "jackiew", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
                           Profile(name: "Jennifer Smith", username: "jennifers", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
                           Profile(name: "Adam Padgett", username: "adamp", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
@@ -99,14 +99,16 @@ let profile: [Profile] = [Profile(name: "John Smith", username: "john", address:
                           Profile(name: "Rene van Camp", username: "renevc",  address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
                           Profile(name: "Katrina DeSantis", username: "katrinad", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "Dairy Allergy"),
                           Profile(name: "Stephanie Sentell", username: "stephanies", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
-                          Profile(name: "Vans Nelson", username: "vansn", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Vans Nelson", username: "vansn", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "Vegetarian"),
                           Profile(name: "Mary Grace Fisher", username: "maryf", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
                           Profile(name: "Joe Guith", username: "joeg", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
                           Profile(name: "Beto Guajardo", username: "betog", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
                           Profile(name: "Michael Robinson", username: "michaelr", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
                           Profile(name: "Cassidy Beadle", username: "cassidyb", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
                           Profile(name: "Craig Frankel", username: "craigf", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
-                          Profile(name: "Stephen Boyd", username: "stephenb", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None")]
+                          Profile(name: "Stephen Boyd", username: "stephenb", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Clay Harmon", username: "clayh", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "None"),
+                          Profile(name: "Sagar Gandhi", username: "sagarg", address: "75 5th St NW", phone: "678-238-2873", excludedIngredients: "Vegetarian")]
 // Past order data
 let orders: [Order] = [Order(date: "9/29/2019", time: "7:49 pm", total: "$24.70"),
                        Order(date: "9/12/2019", time: "1:13 pm", total: "$17.21")]

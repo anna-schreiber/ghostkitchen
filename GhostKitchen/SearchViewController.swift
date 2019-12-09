@@ -64,7 +64,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.itemPrice.text = String(format: "$%.02f", filteredMenu[indexPath.row].price)
         
         // Vegetarian use case: if the current user is Sarah, display icon on the allowed items
-        if (name == "sarah")  || (name == "jaya") {
+        if (name == "sarah")  || (name == "jaya") || (name == "sagarg"){
             if (filteredMenu[indexPath.row].keywords.contains("vegetarian")){
                 // Displays vegetarian icon
                 cell.vegImage.isHidden = false
@@ -98,7 +98,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         var array = defaults.object(forKey:"cart") as? [String] ?? [String]()
         
         // Vegetarian use case: if the current user is Sarah, display a dietary warning if a non-vegetarian item is clicked
-        if (name == "sarah")  || (name == "jaya") {
+        if (name == "sarah")  || (name == "jaya") || (name == "sagarg"){
             if !(filteredMenu[indexPath.row].keywords.contains("vegetarian")){
                 let alert = UIAlertController(title:"Dietary Restriction Warning", message: "This item is not vegetarian. Would you like to continue?", preferredStyle: .alert)
                 let actionOK = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) {
